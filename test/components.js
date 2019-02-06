@@ -437,9 +437,260 @@ describe('h-line', () => {
         </tr>
       </table>
     `;
-     compare(input, expected);
+    compare(input, expected);
   });
 });
+
+describe('Accordion', () => {
+	it('creates a accordion container', () => {
+		var input = `
+			<accordion></accordion>
+		`;
+		var expected = `
+			<table class="accordion">
+				<tr>
+					<td class="accordion-inner">
+						<table></table>
+					</td>
+				</tr>
+			</table>
+		`;
+
+    compare(input, expected);
+	});
+
+	it('creates a accordion and accordion-item containers', () => {
+		var input = `
+			<accordion>
+				<accordion-item></accordion-item>
+			</accordion>
+		`;
+		var expected = `
+			<table class="accordion">
+				<tr>
+					<td class="accordion-inner">
+						<table>
+							<tr>
+								<td>
+									<label class="accordion-element">
+										<!--[if !mso | IE]><!-->
+										<input type="checkbox" class="accordion-checkbox" style="display: none;">
+										<!--<![endif]-->
+										<div></div>
+									</label>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		`;
+
+		compare(input, expected);
+	})
+
+	it('creates a accordion with a single item', () => {
+		var input = `
+			<accordion>
+				<accordion-item>
+					<accordion-item-header iconMoreSrc="{{image-path}}icons/arrow-more.png" iconLessSrc="{{image-path}}icons/arrow-less.png">Accordion #1</accordion-item-header>
+					<accordion-item-content>
+						<p>This is text...</p>
+						<a href="##" target="_blank">Link</a>
+					</accordion-item-content>
+				</accordion-item>
+			</accordion>
+		`;
+		var expected = `
+			<table class="accordion">
+				<tr>
+					<td class="accordion-inner">
+						<table>
+							<tr>
+								<td>
+									<label class="accordion-element">
+										<!--[if !mso | IE]><!-->
+										<input type="checkbox" class="accordion-checkbox" style="display: none;">
+										<!--<![endif]-->
+										<div>
+											<div class="accordion-title">
+												<table>
+													<tr>
+														<td class="accordion-header" valign="middle">Accordion #1</td>
+														<!--[if !mso | IE]><!-->
+														<td class="accordion-ico" valign="middle">
+															<img class="accordion-more" src="{{image-path}}icons/arrow-more.png" alt="+">
+															<img class="accordion-less" src="{{image-path}}icons/arrow-less.png" alt="-">
+														</td>
+														<!--<![endif]-->
+													</tr>
+												</table>
+											</div>
+											<div class="accordion-content">
+												<table>
+													<tr>
+														<td>
+															<p>This is text...</p>
+															<a href="##" target="_blank">Link</a>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</label>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		`;
+
+		compare(input, expected);
+	})
+
+	it('creates a accordion with three items', () => {
+		var input = `
+			<accordion>
+				<accordion-item>
+					<accordion-item-header iconMoreSrc="{{image-path}}icons/arrow-more.png" iconLessSrc="{{image-path}}icons/arrow-less.png">Accordion #1</accordion-item-header>
+					<accordion-item-content>
+						<p>This is text for 1...</p>
+						<a href="##" target="_blank">Link 1</a>
+					</accordion-item-content>
+				</accordion-item>
+				<accordion-item>
+					<accordion-item-header iconMoreSrc="{{image-path}}icons/arrow-more.png" iconLessSrc="{{image-path}}icons/arrow-less.png">Accordion #2</accordion-item-header>
+					<accordion-item-content>
+						<p>This is text for 2...</p>
+						<a href="##" target="_blank">Link 2</a>
+					</accordion-item-content>
+				</accordion-item>
+				<accordion-item>
+					<accordion-item-header iconMoreSrc="{{image-path}}icons/arrow-more.png" iconLessSrc="{{image-path}}icons/arrow-less.png">Accordion #3</accordion-item-header>
+					<accordion-item-content>
+						<p>This is text for 3...</p>
+						<a href="##" target="_blank">Link 3</a>
+					</accordion-item-content>
+				</accordion-item>
+			</accordion>
+		`;
+		var expected = `
+			<table class="accordion">
+				<tr>
+					<td class="accordion-inner">
+						<table>
+							<tr>
+								<td>
+									<label class="accordion-element">
+										<!--[if !mso | IE]><!-->
+										<input type="checkbox" class="accordion-checkbox" style="display: none;">
+										<!--<![endif]-->
+										<div>
+											<div class="accordion-title">
+												<table>
+													<tr>
+														<td class="accordion-header" valign="middle">Accordion #1</td>
+														<!--[if !mso | IE]><!-->
+														<td class="accordion-ico" valign="middle">
+															<img class="accordion-more" src="{{image-path}}icons/arrow-more.png" alt="+">
+															<img class="accordion-less" src="{{image-path}}icons/arrow-less.png" alt="-">
+														</td>
+														<!--<![endif]-->
+													</tr>
+												</table>
+											</div>
+											<div class="accordion-content">
+												<table>
+													<tr>
+														<td>
+															<p>This is text for 1...</p>
+															<a href="##" target="_blank">Link 1</a>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label class="accordion-element">
+										<!--[if !mso | IE]><!-->
+										<input type="checkbox" class="accordion-checkbox" style="display: none;">
+										<!--<![endif]-->
+										<div>
+											<div class="accordion-title">
+												<table>
+													<tr>
+														<td class="accordion-header" valign="middle">Accordion #2</td>
+														<!--[if !mso | IE]><!-->
+														<td class="accordion-ico" valign="middle">
+															<img class="accordion-more" src="{{image-path}}icons/arrow-more.png" alt="+">
+															<img class="accordion-less" src="{{image-path}}icons/arrow-less.png" alt="-">
+														</td>
+														<!--<![endif]-->
+													</tr>
+												</table>
+											</div>
+											<div class="accordion-content">
+												<table>
+													<tr>
+														<td>
+															<p>This is text for 2...</p>
+															<a href="##" target="_blank">Link 2</a>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label class="accordion-element">
+										<!--[if !mso | IE]><!-->
+										<input type="checkbox" class="accordion-checkbox" style="display: none;">
+										<!--<![endif]-->
+										<div>
+											<div class="accordion-title">
+												<table>
+													<tr>
+														<td class="accordion-header" valign="middle">Accordion #3</td>
+														<!--[if !mso | IE]><!-->
+														<td class="accordion-ico" valign="middle">
+															<img class="accordion-more" src="{{image-path}}icons/arrow-more.png" alt="+">
+															<img class="accordion-less" src="{{image-path}}icons/arrow-less.png" alt="-">
+														</td>
+														<!--<![endif]-->
+													</tr>
+												</table>
+											</div>
+											<div class="accordion-content">
+												<table>
+													<tr>
+														<td>
+															<p>This is text for 3...</p>
+															<a href="##" target="_blank">Link 3</a>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</label>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		`;
+
+		compare(input, expected);
+	})
+})
 
 describe('raw', () => {
   it('creates a wrapper that ignores anything inside', () => {
@@ -449,3 +700,4 @@ describe('raw', () => {
     compare(input, expected);
   });
 });
+
